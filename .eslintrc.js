@@ -1,18 +1,17 @@
 module.exports = {
 	env: {
 		browser: true,
-		es6: true
+		es6: true,
+		node: true
 	},
-	extends: ["plugin:react/recommended", "airbnb", "prettier"],
+	extends: ["plugin:react/recommended", "prettier", "eslint:recommended"],
 	globals: {
 		Atomics: "readonly",
 		SharedArrayBuffer: "readonly"
 	},
 	parser: "@typescript-eslint/parser",
 	parserOptions: {
-		ecmaFeatures: {
-			jsx: true
-		},
+		ecmaFeatures: { jsx: true },
 		ecmaVersion: 2018,
 		sourceType: "module"
 	},
@@ -21,6 +20,10 @@ module.exports = {
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",
 		"no-console": "off",
-		"react/jsx-filename-extension": [1, { extensions: [".js", ".jsx", ".tsx"] }]
+		"import/prefer-default-export": "off",
+		"import/no-unresolved": "off",
+		"import/extensions": "off",
+		"@typescript-eslint/explicit-function-return-type": ["off"],
+		"@typescript-eslint/no-explicit-any": "off"
 	}
 };
