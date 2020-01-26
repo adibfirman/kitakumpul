@@ -1,22 +1,17 @@
 import React from "react";
+import Link from "next/link";
 
-import Layout from "@components/Layout";
-
-export default function App() {
+function Index() {
 	return (
-		<Layout>
-			<h1>Kita Kumpul</h1>
-			<p>Please login...!!</p>
-			<form>
-				<div>
-					<label htmlFor="email">Email</label>
-					<input id="email" />
-				</div>
-				<div>
-					<label htmlFor="password">Password</label>
-					<input id="password" />
-				</div>
-			</form>
-		</Layout>
+		<div>
+			<Link href="/signin" as="/signin">
+				<a>Sign in</a>
+			</Link>
+			<Link href="/signup" as="/signup">
+				<a>Sign Up</a>
+			</Link>
+		</div>
 	);
 }
+
+export default Index;

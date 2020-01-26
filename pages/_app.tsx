@@ -1,4 +1,5 @@
-import "@styles/main.css";
+/** TO-DO: uncomment when u want tailwind css  */
+// import "@styles/main.css";
 
 import React from "react";
 import { AppProps } from "next/app";

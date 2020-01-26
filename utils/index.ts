@@ -1,1 +1,1 @@
-export { default as sumNum } from "./sumNum";
+export { default as firebase } from "./firebase";
