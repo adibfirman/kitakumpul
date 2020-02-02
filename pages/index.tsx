@@ -4,12 +4,21 @@ import Link from "next/link";
 function Index() {
 	return (
 		<div>
-			<Link href="/signin" as="/signin">
-				<a>Sign in</a>
-			</Link>
-			<Link href="/signup" as="/signup">
-				<a>Sign Up</a>
-			</Link>
+			<p>
+				<Link href="/signin" as="/signin">
+					<a>Sign in</a>
+				</Link>
+			</p>
+			<p>
+				<Link href="/signup" as="/signup">
+					<a>Sign Up</a>
+				</Link>
+			</p>
+			<p>
+				<Link href="/home" as="/home">
+					<a>Protected route</a>
+				</Link>
+			</p>
 		</div>
 	);
 }

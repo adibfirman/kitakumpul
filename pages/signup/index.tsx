@@ -1,6 +1,7 @@
-import React from "react";
+import "firebase/auth";
 
-import { firebase } from "@utils";
+import React from "react";
+import firebase from "firebase/app";
 
 function SignUp() {
 	const [isLoading, setLoading] = React.useState(false);

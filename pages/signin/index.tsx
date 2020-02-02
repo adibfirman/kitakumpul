@@ -1,7 +1,8 @@
+import "firebase/auth";
+
 import React from "react";
 import Router from "next/router";
-
-import { firebase } from "@utils";
+import firebase from "firebase/app";
 
 function SignIn() {
 	const [isLoading, setLoading] = React.useState(false);
