@@ -1,8 +1,10 @@
 import "firebase/auth";
 
 import React from "react";
-import Router from "next/router";
 import firebase from "firebase/app";
+import Router from "next/router";
+
+import { auth } from "@utils";
 
 function SignIn() {
 	const [isLoading, setLoading] = React.useState(false);
@@ -19,6 +21,9 @@ function SignIn() {
 			const { value: pass } = ele.namedItem("pass") as HTMLInputElement;
 
 			await firebase.auth().signInWithEmailAndPassword(email, pass);
+
+			const currentUser = firebase.auth().currentUser;
+			auth.saveToken(currentUser?.uid);
 
 			Router.push("/home");
 		} catch (e) {

@@ -1,14 +1,15 @@
 import "firebase/auth";
 
 import React from "react";
-import Router from "next/router";
 import firebase from "firebase/app";
+import Router from "next/router";
 
-import { privateRoute } from "@utils";
+import { privateRoute, auth } from "@utils";
 
 function Home() {
-	function onLogout() {
-		firebase.auth().signOut();
+	async function onLogout() {
+		await firebase.auth().signOut();
+		auth.removeToken();
 		Router.push("/");
 	}
 
