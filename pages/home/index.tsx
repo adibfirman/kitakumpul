@@ -4,6 +4,8 @@ import React from "react";
 import Router from "next/router";
 import firebase from "firebase/app";
 
+import { privateRoute } from "@utils";
+
 function Home() {
 	function onLogout() {
 		firebase.auth().signOut();
@@ -18,4 +20,4 @@ function Home() {
 	);
 }
 
-export default Home;
+export default privateRoute(Home);
