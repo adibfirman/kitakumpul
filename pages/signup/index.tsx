@@ -2,6 +2,9 @@ import "firebase/auth";
 
 import React from "react";
 import firebase from "firebase/app";
+import Router from "next/router";
+
+import { auth } from "@utils";
 
 function SignUp() {
 	const [isLoading, setLoading] = React.useState(false);
@@ -17,7 +20,12 @@ function SignUp() {
 			const { value: email } = elements.namedItem("email") as HTMLInputElement;
 			const { value: pass } = elements.namedItem("pass") as HTMLInputElement;
 
-			await firebase.auth().createUserWithEmailAndPassword(email, pass);
+			const dataUser = await firebase
+				.auth()
+				.createUserWithEmailAndPassword(email, pass);
+
+			auth.saveToken(dataUser.user?.uid);
+			Router.push("/welcome");
 		} catch (e) {
 			setErrMsg(e.message);
 			console.error(e);

@@ -14,11 +14,6 @@ function Index() {
 					<a>Sign Up</a>
 				</Link>
 			</p>
-			<p>
-				<Link href="/home" as="/home">
-					<a>Protected route</a>
-				</Link>
-			</p>
 		</div>
 	);
 }

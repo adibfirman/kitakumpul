@@ -1,4 +1,6 @@
-import "@styles/main.css";
+/** Uncomment this when u want to tailwind css */
+// import "@styles/main.css";
+
 import "@utils/initFirebase";
 import "firebase/auth";
 
