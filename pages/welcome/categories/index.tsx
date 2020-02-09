@@ -3,17 +3,18 @@ import "firebase/firestore";
 import React from "react";
 import firebase from "firebase/app";
 import Router from "next/router";
+import qs from "query-string";
 
 import { privateRoute } from "@utils";
-import * as Types from "./types";
+import { IProps, TCategories } from "./types";
 
-function Categories({ categories }: Types.IProps) {
-	const [selected, setSelected] = React.useState<Types.TCategories>(categories);
-	const isSelectedOne = React.useMemo(() => {
-		return selected.some(category => category.selected);
+function Categories({ categories }: IProps) {
+	const [selected, setSelected] = React.useState<TCategories>(categories);
+	const selectedData = React.useMemo(() => {
+		return selected.filter(category => category.selected);
 	}, [selected]);
 
-	function onClicked(index: number) {
+	function onChange(index: number) {
 		return () => {
 			setSelected(item => {
 				const copyItem = [...item];
@@ -24,14 +25,27 @@ function Categories({ categories }: Types.IProps) {
 		};
 	}
 
+	function onNext() {
+		const categories = [...selectedData].map(item => item.id);
+		const params = { ...Router.query, categories };
+
+		Router.push({
+			pathname: "/welcome/groups",
+			query: qs.stringify(params)
+		});
+	}
+
 	return (
 		<div>
 			<div onClick={() => Router.back()}>Kembali</div>
-			<button disabled={!isSelectedOne}>Lanjut</button>
+			<button onClick={onNext} disabled={!selectedData.length}>
+				Lanjut
+			</button>
 			<h1>Pilih kategori untuk memulai</h1>
 			{selected.map((item, i) => (
-				<div key={i} onClick={onClicked(i)}>
-					{item.name} {item.selected && "V"}
+				<div key={i}>
+					<input type="checkbox" id={item.name} onChange={onChange(i)} />
+					<label htmlFor={item.name}>{item.name}</label>
 				</div>
 			))}
 		</div>
@@ -39,7 +53,7 @@ function Categories({ categories }: Types.IProps) {
 }
 
 Categories.getInitialProps = async () => {
-	const data: Types.TCategories = [];
+	const data: TCategories = [];
 	const db = firebase.firestore();
 	const querySnapshot = await db.collection("categories").get();
 
